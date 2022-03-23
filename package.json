@@ -16,7 +16,7 @@
     "test:clean": "rm -rf test/__snapshots__; rm -rf test/js"
   },
   "dependencies": {
-    "globby": "^8.0.1",
+    "globby": "^11.0.4",
     "schema-utils": "^4.0.0",
     "upath": "^2.0.1"
   },
