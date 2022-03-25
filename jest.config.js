@@ -7,4 +7,5 @@ module.exports = {
         '^.+\\.jsx?$': 'esbuild-jest',
         '^.+\\.tsx?$': 'esbuild-jest',
     },
+    transformIgnorePatterns: [],
 };
