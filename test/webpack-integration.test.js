@@ -48,7 +48,7 @@ describe('Webpack Integration Tests', () => {
                     expect(readFileOrEmpty(actualPath)).toEqual(readFileOrEmpty(filePath));
                     expect(readFileOrEmpty(actualPath)).toMatchSnapshot();
                 });
-                done();
+                return done();
             });
         });
     });

@@ -9,7 +9,7 @@ module.exports = {
             filesToConcat: [
                 '../../fixtures/a.js',
                 '../../fixtures/b.js',
-                '../../fixtures/sourcemaps/linked.js'
+                '../../fixtures-sourcemaps/linked.js'
             ],
         })
     ],

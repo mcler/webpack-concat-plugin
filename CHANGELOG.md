@@ -1,5 +1,13 @@
 ## Change History
 
+### v5.0.0-alpha6 (2022-04-05)
+* new build, new code style, rewritten to TypeScript
+* improved file hashing
+* added both CommonJS and ESModules support in NPM package
+* added support for existing source maps (internal, linked, external)
+* added insertion of new line between concatenated files when needed
+* moved from `globby` to `fast-glob` with `dir-glob`
+
 ### v4.1.5 (2022-02-28)
 * fixed `outputPath` option usage
 * update `babel`, `core-js`, `jest`, `schema-utils`, `webpack`, `webpack-sources`

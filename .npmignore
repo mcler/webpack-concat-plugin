@@ -7,5 +7,6 @@ test
 .gitattributes
 .gitignore
 .travis.yml
-esbuild.config.js
 jest.config.js
+rollup.config.js
+tsconfig.json

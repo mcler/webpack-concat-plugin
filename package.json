@@ -1,6 +1,6 @@
 {
   "name": "@mcler/webpack-concat-plugin",
-  "version": "5.0.0-alpha2",
+  "version": "5.0.0-alpha6",
   "description": "Webpack file concatenation.",
   "keywords": [
     "webpack",
@@ -20,45 +20,64 @@
   "sideEffects": false,
   "exports": {
     ".": {
+      "require": "./index.js",
       "import": "./index.mjs",
-      "require": "./index.js"
+      "types": "./index.d.ts"
     }
   },
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "build": "rm -rf ./dist/* && node esbuild.config.js && cp package.json dist && cp *.md dist",
-    "lint": "eslint lib",
+    "build": "npm run build:install-peers && rm -rf ./dist/* && npm run build:rollup && cp package.json dist && cp *.md dist",
+    "build:install-peers": "npx -y install-peer",
+    "build:rollup": "rollup --config",
+    "lint": "eslint lib --ext=ts",
     "publish:alpha": "npm run build && cd dist && npm publish --access public --tag alpha",
     "publish:latest": "npm run build && cd dist && npm publish --access public --tag latest",
     "publish:next": "npm run build && cd dist && npm publish --access public --tag next",
     "publish:promote-next": "npm dist-tag add @mcler/webpack-concat-plugin@$(npm dist-tag ls @mcler/webpack-concat-plugin | grep next | sed 's/next\\: //g') latest",
-    "test": "npm run test:clean; npm run test:create-sourcemaps; jest",
-    "test:clean": "rm -rf test/__snapshots__; rm -rf test/js",
-    "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
-    "test:create-sourcemaps": "esbuild test/fixtures/sourcemaps/source.js --sourcemap=linked --outfile=test/fixtures/sourcemaps/linked.js; esbuild test/fixtures/sourcemaps/source.js --sourcemap=external --outfile=test/fixtures/sourcemaps/external.js; esbuild test/fixtures/sourcemaps/source.js --sourcemap=inline --outfile=test/fixtures/sourcemaps/inline.js",
+    "test": "jest",
+    "test:clean": "rm -rf test/__snapshots__ ; rm -rf test/js",
+    "test:coverage": "jest --collectCoverageFrom='lib/*.ts' --coverage",
+    "test:create-sourcemaps": "esbuild test/fixtures-sourcemaps/source.js --sourcemap=linked --outfile=test/fixtures-sourcemaps/linked.js && esbuild test/fixtures-sourcemaps/source.js --sourcemap=external --outfile=test/fixtures-sourcemaps/external.js && esbuild test/fixtures-sourcemaps/source.js --sourcemap=inline --outfile=test/fixtures-sourcemaps/inline.js",
+    "test:prepare": "npm run test:clean ; npm run test:create-sourcemaps",
     "test:watch": "npm run test:clean; jest --watch"
   },
   "dependencies": {
-    "globby": "^8.0.1",
+    "dir-glob": "^3.0.1",
+    "fast-glob": "^3.2.11",
     "schema-utils": "^4.0.0",
     "upath": "^2.0.1"
   },
   "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "@types/node": "^17.0.23",
+    "@types/webpack-sources": "^3.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
     "esbuild": "^0.14.26",
     "esbuild-jest": "^0.5.0",
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-typescript": "^3.0.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^26.1.1",
     "eslint-plugin-promise": "^6.0.0",
     "is-object": "^1.0.1",
-    "jest": "^27.2.3"
+    "jest": "^27.2.3",
+    "rollup": "^2.70.1",
+    "rollup-plugin-esbuild": "^4.8.2",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^4.6.3"
   },
   "peerDependencies": {
     "html-webpack-plugin": "^5.0.0",
+    "source-map": "^0.7.3",
     "webpack": "^5.0.0",
     "webpack-sources": "^3.2.1"
   },

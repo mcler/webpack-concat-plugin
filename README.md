@@ -113,7 +113,7 @@ Array of file paths to concat. Supported path patterns:
 
 - normal path
 - npm packages
-- [glob](https://github.com/sindresorhus/globby) patterns
+- [fast-glob](https://github.com/mrmlnc/fast-glob) patterns
 
 ### `injectType`
 
