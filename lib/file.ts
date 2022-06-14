@@ -33,8 +33,6 @@ async function getSourceAndMap(filePath: string): Promise<CodeAndMap> {
     } else if (sourceMappingUrl) {
         sourceMapping = await readFile(path.join(path.dirname(filePath), sourceMappingUrl));
     } else {
-        sourceMapping = await readFile(path.join(path.dirname(filePath), sourceMappingUrl));
-        // sourceMapping = await readFile(upath.addExt(filePath, '.map'));
         sourceMapping = await readFile(`${filePath}.map`);
     }
 
