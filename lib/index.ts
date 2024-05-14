@@ -217,8 +217,11 @@ export default class ConcatPlugin {
             concatSource.add(source);
         });
         this.finalFileName = this.getFileName(concatSource.source().toString());
+        const filePathAsset = this.settings.outputPath
+            ? path.join(this.settings.outputPath, this.finalFileName)
+            : this.finalFileName;
         compilation.emitAsset(
-            path.join(this.settings.outputPath, this.finalFileName),
+            filePathAsset,
             concatSource as any, // Reason for any: own Source typing in webpack
         );
 
