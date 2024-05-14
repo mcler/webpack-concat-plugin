@@ -214,8 +214,9 @@ class ConcatPlugin {
         Object.entries(allFiles).forEach(([name, file]) => {
             concatSource.add(new OriginalSource(file, name));
         });
-        compilation.emitAsset(`${this.settings.outputPath}/${this.finalFileName}`, concatSource);
-
+        const filePathAsset = this.settings.outputPath ? `${this.settings.outputPath}/${this.finalFileName}` : this.finalFileName;
+        compilation.emitAsset(filePathAsset, concatSource);
+        
         this.needCreateNewFile = false;
     }
 
