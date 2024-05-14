@@ -1,5 +1,8 @@
 ## Change History
 
+### v4.1.6 (2024-05-14)
+* fixed: if `outputPath` is not provided, there should be a `/ `in front of `finalFileName`. It will end up to be `//finalFileName` on the final file by @davidzhaozz in #8
+
 ### v4.1.5 (2022-02-28)
 * fixed `outputPath` option usage
 * update `babel`, `core-js`, `jest`, `schema-utils`, `webpack`, `webpack-sources`
