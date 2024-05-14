@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import ConcatPlugin from '../lib';
 
 describe('json schema validation', () => {

@@ -1,5 +1,5 @@
-import fs from 'fs/promises';
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import upath from 'upath';
 import type { Compiler } from 'webpack';
 import { OriginalSource, SourceMapSource } from 'webpack-sources';
