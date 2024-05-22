@@ -1,8 +1,16 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import webpack from 'webpack';
 
 const cases = process.env.CASES ? process.env.CASES.split(',') : fs.readdirSync(path.join(__dirname, 'cases'));
+
+function readFileOrEmpty(filePath) {
+    try {
+        return fs.readFileSync(filePath, 'utf-8');
+    } catch (e) {
+        return '';
+    }
+}
 
 describe('Webpack Integration Tests', () => {
     cases.forEach((testCase) => {
@@ -40,16 +48,8 @@ describe('Webpack Integration Tests', () => {
                     expect(readFileOrEmpty(actualPath)).toEqual(readFileOrEmpty(filePath));
                     expect(readFileOrEmpty(actualPath)).toMatchSnapshot();
                 });
-                done();
+                return done();
             });
         });
     });
 });
-
-function readFileOrEmpty(path) {
-    try {
-        return fs.readFileSync(path, 'utf-8');
-    } catch (e) {
-        return '';
-    }
-}

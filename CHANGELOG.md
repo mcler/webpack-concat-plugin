@@ -1,5 +1,17 @@
 ## Change History
 
+### v5.0.0-alpha7 (2024-05-14)
+* new build, new code style, rewritten to TypeScript
+* improved file hashing
+* added both CommonJS and ESModules support in NPM package
+* added support for existing source maps (internal, linked, external)
+* added insertion of new line between concatenated files when needed
+* moved from `globby` to `fast-glob` with `dir-glob`
+* fixed: if `outputPath` is not provided, there should be a `/ `in front of `finalFileName`. It will end up to be `//finalFileName` on the final file by @davidzhaozz in #8
+
+### v4.1.6 (2024-05-14)
+* fixed: if `outputPath` is not provided, there should be a `/ `in front of `finalFileName`. It will end up to be `//finalFileName` on the final file by @davidzhaozz in #8
+
 ### v4.1.5 (2022-02-28)
 * fixed `outputPath` option usage
 * update `babel`, `core-js`, `jest`, `schema-utils`, `webpack`, `webpack-sources`
